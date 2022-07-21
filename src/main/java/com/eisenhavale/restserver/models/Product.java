@@ -32,7 +32,11 @@ public class Product {
     @NumberFormat
     private Double price;
 
+    @Column()
+    @NotBlank
     private String description;
+
+    private String image;
 
     /** TODO Work ok categories*/
 }

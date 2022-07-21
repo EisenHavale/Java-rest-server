@@ -1,9 +1,8 @@
-package com.eisenhavale.restserver.models;
+package com.eisenhavale.restserver.models.constants;
 
-public class ModelConstants {
-    /** Over here I will define some constants related with all entities, mainly names to be used at database*/
-    static class UserTable {
-        static final String TABLE_NAME = "user";
+public class UserConstants {
+   public static class UserTable {
+        static final String TABLE_NAME = "users";
 
         static class Id{
             static final String COLUMN_NAME = "id";
