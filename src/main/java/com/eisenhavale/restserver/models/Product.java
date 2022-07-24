@@ -1,5 +1,7 @@
 package com.eisenhavale.restserver.models;
 
+import com.eisenhavale.restserver.models.constants.ProductConstants;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.NumberFormat;
@@ -19,24 +21,24 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
     private UUID id;
 
     @NotBlank
     @Size(min=2, max = 15)
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "price")
+
     @NotBlank
     @NumberFormat
     private Double price;
 
-    @Column()
     @NotBlank
     private String description;
 
     private String image;
+
+    @ManyToOne
+    private Category category;
 
     /** TODO Work ok categories*/
 }

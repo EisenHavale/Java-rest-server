@@ -7,9 +7,11 @@ public class UserConstants {
         static class Id{
             static final String COLUMN_NAME = "id";
         }
+
         static class Name{
             static final String COLUMN_NAME = "name";
         }
+
 
         static class LastName{
             static final String COLUMN_NAME = "last_name";
