@@ -1,5 +1,6 @@
 package com.eisenhavale.restserver.models;
 
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -72,6 +73,14 @@ public class User {
     @Column(name="profile_image")
     private String profileImage;
 
-    /**TODO Work on roles*/
+    @ManyToOne
+    @JoinTable(
+        name = "user_role",
+        joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id")
+    )
+    private Role role;
+
+    /*TODO Work on roles*/
 
 }
