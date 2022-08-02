@@ -1,6 +1,8 @@
 package com.eisenhavale.restserver.models;
 
 
+import com.eisenhavale.restserver.models.constants.RoleConstants.RoleTable;
+import com.eisenhavale.restserver.models.constants.UserConstants.UserJoinTable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Set;
@@ -10,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -20,7 +23,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name="role")
+@Table(name= RoleTable.TABLE_NAME)
 public class Role {
 
   @Id
@@ -35,13 +38,11 @@ public class Role {
   @Size(min=2, max = 255)
   private String description;
 
-  private boolean deleted;
-  @OneToMany(mappedBy="role")
+  private boolean status;
+  @OneToMany(mappedBy=RoleTable.TABLE_NAME)
   @JsonManagedReference //* Use to set handle same json reference as settled on the other class
   private Set<RolePermissions> rolePermissions;
 
-  @ManyToOne
-  @JsonIgnore
-  private User user;
+
 
 }

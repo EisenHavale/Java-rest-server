@@ -12,7 +12,6 @@ public class CategoryConstants {
     public static class Description {
       static final String COLUMN_NAME="description";
     }
-
   }
 
 }

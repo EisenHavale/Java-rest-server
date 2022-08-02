@@ -1,6 +1,7 @@
 package com.eisenhavale.restserver.models;
 
-import java.util.Set;
+import com.eisenhavale.restserver.models.constants.UserConstants.UserJoinTable;
+import com.eisenhavale.restserver.models.constants.UserConstants.UserTable;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -20,64 +21,63 @@ import java.util.UUID;
 @Getter
 @Setter
 @CrossOrigin(origins="*")
-@Table(name="user")
+@Table(name= UserTable.TABLE_NAME)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Type(type="uuid-char")
-    @Column(name="id")
+    @Column(name=UserTable.ID_COLUMN_NAME)
     private UUID id;
 
     @NotBlank
     @Size(min=5, max=20)
-    @Column(name="name")
+    @Column(name= UserTable.NAME_COLUMN_NAME)
     private String name;
 
     @NotBlank
     @Size(min=5, max=20)
-    @Column(name="last_name")
+    @Column(name= UserTable.LAST_NAME_COLUMN_NAME)
     private String lastName;
 
     @NotBlank
     @Size(min=3,  max=20)
-    @Column(name="user_name")
+    @Column(name= UserTable.USER_NAME_COLUMN_NAME)
     private String userName;
 
     @NotBlank
-    @Column(name="birth_day")
+    @Column(name=UserTable.BIRTHDAY_COLUMN_NAME)
     @DateTimeFormat
     private Date birthDay;
 
     @NotBlank
-    @Column(name="password")
-
+    @Column(name=UserTable.PASSWORD_COLUMN_NAME)
     private String password;
 
     @NotBlank
     @Email
     @UniqueElements
-    @Column(name ="email")
+    @Column(name =UserTable.EMAIL_COLUMN_NAME)
     private String email;
 
     @NotBlank
     @UniqueElements
-    @Column(name="phone_number")
+    @Column(name=UserTable.PHONE_COLUMN_NAME)
     @NumberFormat
     private int phoneNumber; /** TODO Set a proper number format*/
 
     @NotBlank
-    @Column(name="status")
+    @Column(name=UserTable.STATUS_COLUMN_NAME)
     private Boolean isActive;
 
-    @Column(name="profile_image")
+    @Column(name=UserTable.IMAGE_COLUMN_NAME)
     private String profileImage;
 
     @ManyToOne
     @JoinTable(
-        name = "user_role",
-        joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id")
+        name = UserJoinTable.TABLE_NAME,
+        joinColumns = @JoinColumn(name=UserJoinTable.USER_COULMN_NAME, referencedColumnName = UserTable.ID_COLUMN_NAME),
+        inverseJoinColumns = @JoinColumn(name=UserJoinTable.ROLE_COULMN_NAME, referencedColumnName = UserTable.ID_COLUMN_NAME)
     )
     private Role role;
 
