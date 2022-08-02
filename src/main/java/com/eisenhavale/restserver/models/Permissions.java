@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -15,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name="role_permissions")
+@Table(name="permissions")
 public class Permissions {
 
   @Id
@@ -29,6 +32,5 @@ public class Permissions {
   @NotBlank
   @Size(min=2, max = 255)
   private String name;
-
 
 }

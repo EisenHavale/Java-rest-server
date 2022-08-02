@@ -1,5 +1,6 @@
 package com.eisenhavale.restserver.models;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Set;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -34,9 +36,12 @@ public class Role {
   private String description;
 
   private boolean deleted;
-
   @OneToMany(mappedBy="role")
   @JsonManagedReference //* Use to set handle same json reference as settled on the other class
-  private Set<Permissions> rolePermissions;
+  private Set<RolePermissions> rolePermissions;
+
+  @ManyToOne
+  @JsonIgnore
+  private User user;
 
 }
